@@ -1,9 +1,8 @@
 import zio._
+import zhttp.service.Server
+import example_app.ExampleApp
 
 object MainApp extends ZIOAppDefault {
   def run =
-    for {
-      name <- Console.readLine("What is your name?")
-      _ <- Console.printLine(s"Hello, $name")
-    } yield ()
+    Server.start(port = 8080, http = ExampleApp)
 }
